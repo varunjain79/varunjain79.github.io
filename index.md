@@ -10,4 +10,4 @@ Media Is You - Co-founded in 2012
 
 ### Contact
 
-Happy to connect over Linkedin [link](https://www.linkedin.com/in/varunjainsrcc/)
+Happy to connect over [Linkedin](https://www.linkedin.com/in/varunjainsrcc/) or you can drop me and email at mail(at)varunjain.info
