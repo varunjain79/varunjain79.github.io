@@ -1,6 +1,6 @@
 title: Varun Jain – Tech, Strategy, Analytics
 logo:  # you can add own logo.
-description: Passionate designer curating designs for new startups  and  founders  and crafts  beautiful user interfaces with love.I am an Strategy professional with expereince across Media Brodcasting, Tech and Finance. I am Graduate from IIM Calcutta and Shri Ram College of Commerce.
+description: I am an Strategy professional with expereince across Media Brodcasting, Tech and Finance. I am Graduate from IIM Calcutta and Shri Ram College of Commerce.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -21,7 +21,7 @@ contact:
   - name: Facebook
     link: https://facebook.com/vjsoft
   - name: LinkedIn
-    link: https://linkedin.com/in/varunjainiimc
+    link: https://www.linkedin.com/in/varunjainsrcc
 
 # Comment Section (Disqus)
 disqus-identifier: varun # add your shortname for Disqus Comment. For example mr-brown
