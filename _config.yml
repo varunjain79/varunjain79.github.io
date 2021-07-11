@@ -10,7 +10,7 @@ author:
   name: Varun Jain
   image: '/assets/img/01.jpg'
   job: Strategy Professional
-  bio: Midia Brodcasting, Technology
+  bio: Strategy, Media, Technology
   email: mail@varunjain.info
 
 
@@ -20,6 +20,8 @@ contact:
     link: https://twitter.com/in/vjsoft
   - name: Facebook
     link: https://facebook.com/vjsoft
+  - name: LinkedIn
+    link: https://linkedin.com/in/varunjainiimc
 
 # Comment Section (Disqus)
 disqus-identifier: varun # add your shortname for Disqus Comment. For example mr-brown
