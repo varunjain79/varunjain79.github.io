@@ -5,15 +5,24 @@ permalink: /about/
 image: '/assets/img/01.jpg'
 ---
 
-I am an Strategy professional with expereince across Media Brodcasting, Tech and Finance. I am Graduate from IIM Calcutta and Shri Ram College of Commerce.
+Strategy professional with 10+ years of experience across Technology, Finance, Media and education domains. Specialised in Business Planning, Forecasting, Pricing, revenue management, broadcast media analysis, data visualization and Tech implementations. Have worked with various start-ups during their inception to developed highly scalable tech solutions.
 
+Education
+• Bachelor of Commerce (H), Shri Ram College of Commerce 
+• MBA, IIM Calcutta 
 
-***
-##Associations
+Work Experience
 
-Zee Entertainment Enterprise - Current Organisation Star India Pvt. Ltd. - Previous Employee Media Is You - Co-founded in 2012
+Start-ups
+•	IIFM (2008-10) – Tech Consultant
+•	Pratham (2009-10) – Tech Consultant
+•	PGTracker (2009) – Co-Founder
+•	ZigEDU (2010-11) – Founding employee
+•	Media Is You (2011-12) – Co-Founder
+•	Satkaponi Consulting (2018-Present) – Advisor
 
-
-
-***
-
+Corporates
+•	Jaypee Commodities
+•	Sony Pictures Network
+•	Star India
+•	Zee Entertainment
