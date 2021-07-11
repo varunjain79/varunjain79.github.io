@@ -2,7 +2,7 @@
 layout: page
 title: About
 permalink: /about/
-image: '/assets/img/01.jpg'
+image: '/assets/img/Varun-about.jpg'
 ---
 
 Strategy professional with 10+ years of experience across Technology, Finance, Media and education domains. Specialised in Business Planning, Forecasting, Pricing, revenue management, broadcast media analysis, data visualization and Tech implementations. Have worked with various start-ups during their inception to developed highly scalable tech solutions.
