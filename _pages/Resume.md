@@ -9,8 +9,8 @@ Strategy professional with 10+ years of experience across Technology, Finance, M
 
 Education
 -------------
-* Bachelor of Commerce (H), Shri Ram College of Commerce 
-* MBA, IIM Calcutta 
+* MBA, Indian Institute of Management Calcutta '14
+* B Com(H), Shri Ram College of Commerce '09
 
 Work Experience
 -----------------
@@ -20,11 +20,11 @@ Work Experience
 *	Pratham (2009-10) – Tech Consultant
 *	PGTracker (2009) – Co-Founder
 *	ZigEDU (2010-11) – Founding employee
-*	Media Is You (2011-12) – Co-Founder
-*	Satkaponi Consulting (2018-Present) – Advisor
+*	Media Is You (2011- ) – Co-Founder
+*	Satkaponi Consulting (2018- ) – Co-Founder
 
 ##### Corporates
-*	Jaypee Commodities
-*	Sony Pictures Network
-*	Star India
-*	Zee Entertainment
+*	Jaypee Commodities (2009-10)
+*	Sony Pictures Network (2013)
+*	Star India (2014-19)
+*	Zee Entertainment (2019- )
