@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Resume
-permalink: /Resume/
+title: Profile
+permalink: /Profile/
 image: '/assets/img/Varun-about.jpg'
 ---
 
