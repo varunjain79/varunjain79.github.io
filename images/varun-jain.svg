@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000" role="img" aria-label="Varun Jain profile placeholder">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a2133"/>
+      <stop offset="100%" stop-color="#11131a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#g)"/>
+  <circle cx="400" cy="350" r="120" fill="#7aa2ff" opacity="0.25"/>
+  <rect x="230" y="520" width="340" height="14" rx="7" fill="#aab2c0" opacity="0.7"/>
+  <rect x="180" y="560" width="440" height="12" rx="6" fill="#aab2c0" opacity="0.45"/>
+  <rect x="145" y="594" width="510" height="12" rx="6" fill="#aab2c0" opacity="0.3"/>
+  <text x="400" y="640" fill="#e9ecf1" font-size="34" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">Varun Jain</text>
+  <text x="400" y="690" fill="#aab2c0" font-size="22" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">Replace this with /images/varun-jain.jpg</text>
+</svg>
