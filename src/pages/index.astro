@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+
+const posts = (await getCollection('foundersGuide', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf());
+const featured = posts.slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="hero shell">
+    <div class="hero-copy">
+      <p class="eyebrow">Co-Founder and CTO at HireVeda</p>
+      <h1>I study how companies hire, how careers move and where AI changes both.</h1>
+      <p class="hero-intro">I am Varun Jain. I build recruitment systems at HireVeda and write from the front line of hiring, career decisions, technology and building a services business in India.</p>
+      <div class="actions">
+        <a class="button button-primary" href="/founders-guide/">Read the Founder’s Guide</a>
+        <a class="button button-secondary" href="https://hireveda.com/" target="_blank" rel="noopener noreferrer">Explore HireVeda</a>
+      </div>
+      <p class="microcopy">First-hand experience, practical systems and uncomfortable lessons. No recycled motivation.</p>
+    </div>
+    <div class="hero-mark" aria-hidden="true">
+      <span>VJ</span>
+      <small>Operator’s notes<br />from India</small>
+    </div>
+  </section>
+
+  <section class="proof-band" aria-label="Areas of work">
+    <div class="shell proof-grid">
+      <div><strong>Operator</strong><span>Building HireVeda</span></div>
+      <div><strong>Recruiter</strong><span>Inside real hiring decisions</span></div>
+      <div><strong>Technologist</strong><span>AI and recruitment systems</span></div>
+      <div><strong>Writer</strong><span>Careers without clichés</span></div>
+    </div>
+  </section>
+
+  <section class="section shell split" id="about">
+    <div>
+      <p class="section-number">01 / About</p>
+      <h2>An operator’s view of talent, technology and work.</h2>
+    </div>
+    <div class="prose">
+      <p>I co-founded HireVeda to make recruitment more accountable. The work is not about sending more profiles. It is about understanding a business, identifying the few signals that matter and building a repeatable path to a good hiring decision.</p>
+      <p>As CTO, I work across product, data, AI automation and operations. That gives me a complete view of what employers say they want, what they actually select and why capable professionals struggle to communicate their value.</p>
+      <p>I studied at SRCC and IIM Calcutta. Most of what I write comes from building, hiring, selling, failing and correcting in the real market.</p>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="shell">
+      <div class="section-heading">
+        <div>
+          <p class="section-number">02 / Founder’s Guide</p>
+          <h2>What experience is worth writing down?</h2>
+        </div>
+        <p>The Founder’s Guide is a permanent, searchable record of decisions, mistakes and systems that should survive any social platform.</p>
+      </div>
+      <div class="post-grid dark-grid">
+        {featured.map((post) => (
+          <PostCard
+            href={`/founders-guide/${post.id}/`}
+            title={post.data.title}
+            description={post.data.description}
+            category={post.data.category}
+            readingTime={post.data.readingTime}
+          />
+        ))}
+      </div>
+      <a class="button button-light guide-cta" href="/founders-guide/">View all guides</a>
+    </div>
+  </section>
+
+  <section class="section shell contact" id="contact">
+    <div>
+      <p class="section-number">03 / Contact</p>
+      <h2>Bring context, not a generic hello.</h2>
+    </div>
+    <div class="contact-options">
+      <a href="https://calendly.com/varun-hv/catchup" target="_blank" rel="noopener noreferrer"><span>Book a conversation</span><strong>Calendly ↗</strong></a>
+      <a href="mailto:varun@hireveda.com"><span>Write directly</span><strong>varun@hireveda.com ↗</strong></a>
+      <a href="https://github.com/varunjain79" target="_blank" rel="noopener noreferrer"><span>View technical work</span><strong>GitHub ↗</strong></a>
+    </div>
+  </section>
+</BaseLayout>
