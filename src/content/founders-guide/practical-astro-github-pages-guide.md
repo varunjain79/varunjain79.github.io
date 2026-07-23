@@ -254,8 +254,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: withastro/action@v5
+      - uses: actions/checkout@v7
+      - uses: withastro/action@v6
 
   deploy:
     needs: build
@@ -266,7 +266,7 @@ jobs:
     steps:
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 ```
 
 In the repository settings, change **Pages → Build and deployment → Source** to **GitHub Actions**.
