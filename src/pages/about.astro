@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'About Varun Jain | Founder, Operator and CTO at HireVeda';
+const description = 'Varun Jain is a three-time founder and the Co-Founder and CTO of HireVeda. Read about his work across media strategy, hiring, career intelligence, AI and company building.';
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'AboutPage',
+      '@id': 'https://varunjain.info/about/#page',
+      url: 'https://varunjain.info/about/',
+      name: title,
+      description,
+      isPartOf: { '@id': 'https://varunjain.info/#website' },
+      mainEntity: { '@id': 'https://varunjain.info/#person' }
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://varunjain.info/#person',
+      name: 'Varun Jain',
+      url: 'https://varunjain.info/',
+      jobTitle: 'Co-Founder and CTO',
+      description: 'Three-time founder and operator working across hiring, career intelligence, business strategy, product, data and AI.',
+      worksFor: { '@type': 'Organization', name: 'HireVeda', url: 'https://hireveda.com/' },
+      alumniOf: [
+        { '@type': 'CollegeOrUniversity', name: 'Indian Institute of Management Calcutta' },
+        { '@type': 'CollegeOrUniversity', name: 'Shri Ram College of Commerce' }
+      ],
+      knowsAbout: ['Hiring intelligence', 'Leadership hiring', 'Career strategy', 'Product strategy', 'Data and analytics', 'Artificial intelligence'],
+      sameAs: ['https://github.com/varunjain79']
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://varunjain.info/' },
+        { '@type': 'ListItem', position: 2, name: 'About', item: 'https://varunjain.info/about/' }
+      ]
+    }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description} canonical="/about/" type="profile" structuredData={schema}>
+  <header class="collection-hero shell">
+    <p class="eyebrow">About Varun Jain</p>
+    <h1>I have spent my career turning noisy operating problems into systems.</h1>
+    <p>From media strategy and revenue planning to recruitment technology and career intelligence, the common thread in my work is simple: find the signal, make the decision clearer and build a system that improves with use.</p>
+  </header>
+
+  <section class="section shell about-story">
+    <aside>
+      <p class="section-number">01 / The short version</p>
+      <div class="fact-list">
+        <p><strong>Current</strong><span>Co-Founder and CTO, HireVeda</span></p>
+        <p><strong>Experience</strong><span>Strategy, product, data, AI, hiring and company building</span></p>
+        <p><strong>Education</strong><span>IIM Calcutta and SRCC</span></p>
+        <p><strong>Based in</strong><span>Delhi NCR, India</span></p>
+      </div>
+    </aside>
+    <div class="long-prose">
+      <h2>My work sits where business judgment meets technology.</h2>
+      <p>I am a three-time founder and the Co-Founder and CTO of HireVeda. I work across product, data, AI automation and technical operations, while staying close to the real hiring decisions made by founders, leadership teams and senior professionals.</p>
+      <p>Before entrepreneurship, I spent years in the media industry. At Star TV Network, I worked across strategy, insights and financial planning. At Zee Entertainment, I worked in sales planning and strategy. Those roles taught me to connect audience behaviour, commercial outcomes, operating constraints and imperfect data—without pretending the market is cleaner than it is.</p>
+      <p>I studied finance at Shri Ram College of Commerce and completed my postgraduate management education at IIM Calcutta. The education mattered, but the more durable lessons came from building products, selling services, managing trade-offs and watching apparently rational plans meet reality.</p>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="shell">
+      <p class="section-number">02 / From operator to founder</p>
+      <div class="career-grid">
+        <article>
+          <span>2006–2014</span>
+          <h2>Finance and management</h2>
+          <p>SRCC gave me a grounding in finance. IIM Calcutta expanded that into strategy, organisations and the mechanics of making decisions under uncertainty.</p>
+        </article>
+        <article>
+          <span>2014–2022</span>
+          <h2>Media strategy at scale</h2>
+          <p>At Star and Zee, I worked on strategy, insights, planning and commercial questions inside large media businesses—an education in incentives, measurement and execution.</p>
+        </article>
+        <article>
+          <span>2022–Now</span>
+          <h2>Building companies and products</h2>
+          <p>Across three founder journeys, I have worked on digital infrastructure, analytics and technology services, and now talent intelligence through HireVeda.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section shell split">
+    <div>
+      <p class="section-number">03 / What I am building now</p>
+      <h2>Better infrastructure for consequential talent decisions.</h2>
+    </div>
+    <div class="prose">
+      <p>HireVeda exists to improve hiring and career decisions through two-sided talent intelligence—not simply to increase the volume of résumés, applications or recruiter activity.</p>
+      <p>On the employer side, we are developing Talent Gnome: a more structured way to assess leadership candidates against the actual mandate, context and constraints of a role. On the professional side, ExecEdge brings structure to positioning, targeting, networking and interview preparation for experienced leaders.</p>
+      <p>The operating loop is build, test and improve. Services create direct exposure to the market. That work reveals recurring problems, validates product hypotheses and helps us build technology around evidence rather than assumptions.</p>
+      <p>I am especially interested in AI-assisted candidate enrichment, structured evaluation, search and retrieval, workflow automation and the places where human judgment must remain accountable.</p>
+    </div>
+  </section>
+
+  <section class="section shell principles">
+    <div>
+      <p class="section-number">04 / Working principles</p>
+      <h2>A few ideas I keep returning to.</h2>
+    </div>
+    <ol class="principle-list">
+      <li><span>01</span><strong>Outcomes beat activity.</strong><p>More calls, profiles, posts or features do not automatically produce a better decision.</p></li>
+      <li><span>02</span><strong>Structure beats instinct.</strong><p>Judgment improves when assumptions, criteria and evidence can be examined.</p></li>
+      <li><span>03</span><strong>Systems beat heroics.</strong><p>A repeatable process is more valuable than one exceptional save.</p></li>
+      <li><span>04</span><strong>Clarity creates leverage.</strong><p>Clear positioning, ownership and priorities remove more friction than motivational noise.</p></li>
+      <li><span>05</span><strong>Compounding wins.</strong><p>Useful writing, trusted relationships and learning loops become durable assets over time.</p></li>
+    </ol>
+  </section>
+
+  <section class="section section-accent">
+    <div class="shell split">
+      <div>
+        <p class="section-number">05 / Why this site exists</p>
+        <h2>My ideas should not disappear when a platform changes its mind.</h2>
+      </div>
+      <div class="prose">
+        <p>Losing access to a professional network of 25,000 followers made one risk impossible to ignore: rented distribution is useful, but it is not an identity.</p>
+        <p>This site is my durable record—work, experience, guides, experiments and lessons in a form that people, search engines and AI systems can find, understand and cite.</p>
+        <div class="actions">
+          <a class="button button-primary" href="/founders-guide/">Read the Founder’s Guide</a>
+          <a class="button button-secondary" href="/resources/">Explore resources</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
