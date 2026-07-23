@@ -1,0 +1,88 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  publishedDate: Date;
+  updatedDate?: Date;
+  category: string;
+  tags: string[];
+  readingTime: string;
+  keyTakeaway: string;
+  slug: string;
+}
+
+const { title, description, publishedDate, updatedDate, category, tags, readingTime, keyTakeaway, slug } = Astro.props;
+const canonical = `/founders-guide/${slug}/`;
+const published = publishedDate.toISOString();
+const modified = (updatedDate ?? publishedDate).toISOString();
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    '@id': `https://varunjain.info${canonical}#article`,
+    headline: title,
+    description,
+    datePublished: published,
+    dateModified: modified,
+    mainEntityOfPage: `https://varunjain.info${canonical}`,
+    inLanguage: 'en-IN',
+    articleSection: category,
+    keywords: tags.join(', '),
+    author: {
+      '@type': 'Person',
+      '@id': 'https://varunjain.info/#person',
+      name: 'Varun Jain',
+      url: 'https://varunjain.info/'
+    },
+    publisher: {
+      '@type': 'Person',
+      '@id': 'https://varunjain.info/#person',
+      name: 'Varun Jain'
+    },
+    image: 'https://varunjain.info/social-card.svg'
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://varunjain.info/' },
+      { '@type': 'ListItem', position: 2, name: 'Founder’s Guide', item: 'https://varunjain.info/founders-guide/' },
+      { '@type': 'ListItem', position: 3, name: title, item: `https://varunjain.info${canonical}` }
+    ]
+  }
+];
+---
+
+<BaseLayout title={`${title} | Varun Jain`} description={description} canonical={canonical} type="article" structuredData={schema}>
+  <article class="article">
+    <header class="article-header shell-narrow">
+      <a class="back-link" href="/founders-guide/">← Founder’s Guide</a>
+      <p class="eyebrow">{category}</p>
+      <h1>{title}</h1>
+      <p class="article-dek">{description}</p>
+      <div class="article-meta">
+        <span>By Varun Jain</span>
+        <time datetime={published}>23 July 2026</time>
+        <span>{readingTime}</span>
+      </div>
+    </header>
+
+    <div class="article-body shell-narrow">
+      <aside class="takeaway">
+        <strong>The short version</strong>
+        <p>{keyTakeaway}</p>
+      </aside>
+      <slot />
+
+      <section class="article-discussion" aria-labelledby="discussion-title">
+        <p class="eyebrow">Continue the argument</p>
+        <h2 id="discussion-title">What did I miss?</h2>
+        <p>Send a counterexample, question or first-hand experience. The strongest questions will be answered inside this article so the page becomes more useful over time.</p>
+        <a class="button button-primary" href={`mailto:varun@hireveda.com?subject=${encodeURIComponent(`Question on: ${title}`)}`}>Send a question</a>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,16 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  category: string;
+  readingTime: string;
+}
+const { href, title, description, category, readingTime } = Astro.props;
+---
+<article class="post-card" data-search={`${title} ${description} ${category}`.toLowerCase()}>
+  <div class="post-card-meta"><span>{category}</span><span>{readingTime}</span></div>
+  <h2><a href={href}>{title}</a></h2>
+  <p>{description}</p>
+  <a class="text-link" href={href} aria-label={`Read ${title}`}>Read the guide →</a>
+</article>

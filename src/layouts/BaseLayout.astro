@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+  type?: 'website' | 'article' | 'profile';
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title = 'Varun Jain | Hiring, Careers, AI and Building HireVeda',
+  description = 'First-hand writing from Varun Jain on hiring, careers, AI and building HireVeda.',
+  canonical = Astro.url.pathname,
+  image = '/social-card.svg',
+  type = 'website',
+  structuredData
+} = Astro.props;
+
+const canonicalUrl = new URL(canonical, Astro.site);
+const imageUrl = new URL(image, Astro.site);
+const defaultSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  '@id': 'https://varunjain.info/#profile',
+  url: 'https://varunjain.info/',
+  name: 'Varun Jain | Co-Founder and CTO of HireVeda',
+  mainEntity: {
+    '@type': 'Person',
+    '@id': 'https://varunjain.info/#person',
+    name: 'Varun Jain',
+    url: 'https://varunjain.info/',
+    jobTitle: 'Co-Founder and CTO',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'HireVeda',
+      url: 'https://hireveda.com/'
+    },
+    alumniOf: [
+      { '@type': 'CollegeOrUniversity', name: 'Indian Institute of Management Calcutta' },
+      { '@type': 'CollegeOrUniversity', name: 'Shri Ram College of Commerce' }
+    ],
+    knowsAbout: ['Recruitment', 'Leadership hiring', 'Career strategy', 'Recruitment technology', 'Artificial intelligence'],
+    sameAs: ['https://github.com/varunjain79', 'https://hireveda.com/']
+  }
+};
+---
+
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Varun Jain" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#f5f1e8" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" type="application/rss+xml" title="Varun Jain — Founder’s Guide" href="/rss.xml" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:site_name" content="Varun Jain" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData ?? defaultSchema)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="shell nav">
+        <a class="wordmark" href="/" aria-label="Varun Jain, home">
+          <span class="wordmark-dot" aria-hidden="true"></span>
+          Varun Jain
+        </a>
+        <nav aria-label="Primary navigation">
+          <a href="/#about">About</a>
+          <a href="/founders-guide/">Founder’s Guide</a>
+          <a href="/rss.xml">RSS</a>
+          <a class="nav-cta" href="/#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer>
+      <div class="shell footer-inner">
+        <p>© {new Date().getFullYear()} Varun Jain</p>
+        <p>Hiring · Careers · AI · Building</p>
+      </div>
+    </footer>
+  </body>
+</html>
