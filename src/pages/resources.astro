@@ -1,0 +1,114 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+
+const posts = (await getCollection('foundersGuide', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf());
+const title = 'Resources | Hiring, Careers, AI and Founder Systems';
+const description = 'Practical resources from Varun Jain for founders, hiring leaders, senior professionals and builders working across talent, careers, AI and owned digital platforms.';
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      '@id': 'https://varunjain.info/resources/#page',
+      url: 'https://varunjain.info/resources/',
+      name: title,
+      description,
+      isPartOf: { '@id': 'https://varunjain.info/#website' },
+      author: { '@id': 'https://varunjain.info/#person' },
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: posts.map((post, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          url: `https://varunjain.info/founders-guide/${post.id}/`,
+          name: post.data.title
+        }))
+      }
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://varunjain.info/' },
+        { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://varunjain.info/resources/' }
+      ]
+    }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description} canonical="/resources/" structuredData={schema}>
+  <header class="collection-hero shell">
+    <p class="eyebrow">Resource library</p>
+    <h1>Useful systems for decisions that carry real consequences.</h1>
+    <p>Frameworks, field notes and practical guides for people building companies, hiring leaders, navigating senior careers or creating an owned digital presence.</p>
+  </header>
+
+  <section class="shell audience-grid" aria-label="Resource topics">
+    <a href="#founders"><span>01</span><h2>Founders and operators</h2><p>Platform risk, owned distribution, decision systems and lessons from building.</p></a>
+    <a href="#hiring"><span>02</span><h2>Hiring leaders</h2><p>Role clarity, structured evaluation, talent intelligence and accountable recruiting.</p></a>
+    <a href="#careers"><span>03</span><h2>Senior professionals</h2><p>Positioning, targeting, networking and communicating professional value.</p></a>
+    <a href="#builders"><span>04</span><h2>Technical builders</h2><p>Practical implementation notes for AI workflows, publishing and digital infrastructure.</p></a>
+  </section>
+
+  <section class="section shell resource-section" id="founders">
+    <div class="resource-intro">
+      <p class="section-number">01 / Published guides</p>
+      <h2>Founder and platform strategy</h2>
+      <p>What happens when your audience, identity and distribution depend on a platform you do not control—and how to build a more durable alternative.</p>
+    </div>
+    <div class="post-grid">
+      {posts.map((post) => (
+        <PostCard
+          href={`/founders-guide/${post.id}/`}
+          title={post.data.title}
+          description={post.data.description}
+          category={post.data.category}
+          readingTime={post.data.readingTime}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="section section-dark" id="hiring">
+    <div class="shell resource-tracks">
+      <div>
+        <p class="section-number">02 / Research tracks</p>
+        <h2>The resource library is expanding around three durable questions.</h2>
+      </div>
+      <div class="track-list">
+        <article>
+          <span>Hiring intelligence</span>
+          <h3>How do we make a better hiring decision?</h3>
+          <p>Role mandates, evaluation criteria, evidence quality, interviewer alignment and the limits of résumé matching.</p>
+        </article>
+        <article id="careers">
+          <span>Career strategy</span>
+          <h3>How does an experienced professional become legible to the right market?</h3>
+          <p>Positioning, target selection, relationship-led networking, interview narratives and decision-quality career moves.</p>
+        </article>
+        <article id="builders">
+          <span>AI and systems</span>
+          <h3>Where does technology create leverage without hiding accountability?</h3>
+          <p>AI-assisted research, candidate enrichment, structured data, workflow automation and owned publishing infrastructure.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section shell resource-footer">
+    <div>
+      <p class="section-number">03 / Follow the work</p>
+      <h2>Use the open web, not an algorithm, as the source of truth.</h2>
+    </div>
+    <div class="prose">
+      <p>Every substantial guide is published here first with a permanent URL, clear authorship and structured metadata. Short-form channels can distribute the work; this site remains the canonical archive.</p>
+      <div class="actions">
+        <a class="button button-primary" href="/rss.xml">Follow via RSS</a>
+        <a class="button button-secondary" href="https://github.com/varunjain79" target="_blank" rel="noopener noreferrer">Follow on GitHub</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

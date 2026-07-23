@@ -6,6 +6,7 @@ interface Props {
   description?: string;
   canonical?: string;
   image?: string;
+  imageAlt?: string;
   type?: 'website' | 'article' | 'profile';
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
@@ -15,6 +16,7 @@ const {
   description = 'First-hand writing from Varun Jain on hiring, careers, AI and building HireVeda.',
   canonical = Astro.url.pathname,
   image = '/social-card.svg',
+  imageAlt = 'Varun Jain — hiring, careers, AI and founder systems',
   type = 'website',
   structuredData
 } = Astro.props;
@@ -23,28 +25,44 @@ const canonicalUrl = new URL(canonical, Astro.site);
 const imageUrl = new URL(image, Astro.site);
 const defaultSchema = {
   '@context': 'https://schema.org',
-  '@type': 'ProfilePage',
-  '@id': 'https://varunjain.info/#profile',
-  url: 'https://varunjain.info/',
-  name: 'Varun Jain | Co-Founder and CTO of HireVeda',
-  mainEntity: {
-    '@type': 'Person',
-    '@id': 'https://varunjain.info/#person',
-    name: 'Varun Jain',
-    url: 'https://varunjain.info/',
-    jobTitle: 'Co-Founder and CTO',
-    worksFor: {
-      '@type': 'Organization',
-      name: 'HireVeda',
-      url: 'https://hireveda.com/'
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://varunjain.info/#website',
+      url: 'https://varunjain.info/',
+      name: 'Varun Jain',
+      description: 'First-hand writing on hiring, careers, AI and building enduring companies.',
+      inLanguage: 'en-IN',
+      publisher: { '@id': 'https://varunjain.info/#person' }
     },
-    alumniOf: [
-      { '@type': 'CollegeOrUniversity', name: 'Indian Institute of Management Calcutta' },
-      { '@type': 'CollegeOrUniversity', name: 'Shri Ram College of Commerce' }
-    ],
-    knowsAbout: ['Recruitment', 'Leadership hiring', 'Career strategy', 'Recruitment technology', 'Artificial intelligence'],
-    sameAs: ['https://github.com/varunjain79', 'https://hireveda.com/']
-  }
+    {
+      '@type': 'Person',
+      '@id': 'https://varunjain.info/#person',
+      name: 'Varun Jain',
+      url: 'https://varunjain.info/',
+      jobTitle: 'Co-Founder and CTO',
+      description: 'Founder and operator building systems for better hiring and career decisions.',
+      worksFor: {
+        '@type': 'Organization',
+        name: 'HireVeda',
+        url: 'https://hireveda.com/'
+      },
+      alumniOf: [
+        { '@type': 'CollegeOrUniversity', name: 'Indian Institute of Management Calcutta' },
+        { '@type': 'CollegeOrUniversity', name: 'Shri Ram College of Commerce' }
+      ],
+      knowsAbout: ['Recruitment', 'Leadership hiring', 'Career strategy', 'Recruitment technology', 'Artificial intelligence', 'Business strategy'],
+      sameAs: ['https://github.com/varunjain79']
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': 'https://varunjain.info/#profile',
+      url: 'https://varunjain.info/',
+      name: 'Varun Jain | Co-Founder and CTO of HireVeda',
+      isPartOf: { '@id': 'https://varunjain.info/#website' },
+      mainEntity: { '@id': 'https://varunjain.info/#person' }
+    }
+  ]
 };
 ---
 
@@ -56,10 +74,13 @@ const defaultSchema = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Varun Jain" />
+    <meta name="generator" content={Astro.generator} />
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <meta name="theme-color" content="#f5f1e8" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" type="application/rss+xml" title="Varun Jain — Founder’s Guide" href="/rss.xml" />
+    <link rel="author" href="/about/" />
+    <link rel="me" href="https://github.com/varunjain79" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
     <meta property="og:type" content={type} />
@@ -69,10 +90,12 @@ const defaultSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
 
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData ?? defaultSchema)} />
   </head>
@@ -85,9 +108,9 @@ const defaultSchema = {
           Varun Jain
         </a>
         <nav aria-label="Primary navigation">
-          <a href="/#about">About</a>
+          <a href="/about/">About</a>
           <a href="/founders-guide/">Founder’s Guide</a>
-          <a href="/rss.xml">RSS</a>
+          <a href="/resources/">Resources</a>
           <a class="nav-cta" href="/#contact">Contact</a>
         </nav>
       </div>
