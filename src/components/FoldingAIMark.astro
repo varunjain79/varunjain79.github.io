@@ -6,7 +6,7 @@
  */
 ---
 
-<div class="fold-mark" data-fold-mark role="img" aria-label="Varun Jain's VJ monogram folds into the letters AI">
+<div class="fold-mark" data-fold-mark role="group" aria-label="Varun Jain's VJ monogram folds into the letters AI">
   <div class="fold-mark__top" aria-hidden="true">
     <span class="fold-mark__overline"><span class="fold-mark__signal"></span> VJ / MOTION STUDY</span>
     <span class="fold-mark__edition">NO. 001</span>
@@ -156,7 +156,9 @@
     flex-direction: column;
     aspect-ratio: 1;
     width: 100%;
+    max-width: 520px;
     min-width: 0;
+    justify-self: end;
     overflow: hidden;
     color: #f5f1e8;
     background: radial-gradient(ellipse at 52% 46%, #33423c 0%, #1e2825 72%);
@@ -239,6 +241,9 @@
   .fold-mark__replay[hidden] { display: none; }
   .fold-mark__timeline { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,.08); }
   .fold-mark__timeline span { display: block; width: 100%; height: 100%; background: #e65a2f; transform: scaleX(0); transform-origin: left center; }
+  @media (max-width: 900px) {
+    .fold-mark { justify-self: center; }
+  }
   @media (max-width: 600px) {
     .fold-mark { box-shadow: 12px 14px 0 #e65a2f; }
     .fold-mark__top { font-size: .55rem; }
