@@ -65,7 +65,7 @@ const schema = [
       <p class="article-dek">{description}</p>
       <div class="article-meta">
         <span>By Varun Jain</span>
-        <time datetime={published}>23 July 2026</time>
+        <time datetime={published}>{new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(publishedDate)}</time>
         <span>{readingTime}</span>
       </div>
     </header>
