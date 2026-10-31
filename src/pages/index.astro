@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
+import FoldingAIMark from '../components/FoldingAIMark.astro';
 
 const posts = (await getCollection('foundersGuide', ({ data }) => !data.draft))
   .sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf());
@@ -20,10 +21,7 @@ const featured = posts.slice(0, 3);
       </div>
       <p class="microcopy">First-hand experience, practical systems and uncomfortable lessons. No recycled motivation.</p>
     </div>
-    <div class="hero-mark" aria-hidden="true">
-      <span>VJ</span>
-      <small>Operator’s notes<br />from India</small>
-    </div>
+    <FoldingAIMark />
   </section>
 
   <section class="proof-band" aria-label="Areas of work">
