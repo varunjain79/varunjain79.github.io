@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import FoldingHeaderWordmark from '../components/FoldingHeaderWordmark.astro';
 
 interface Props {
   title?: string;
@@ -103,10 +104,7 @@ const defaultSchema = {
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="shell nav">
-        <a class="wordmark" href="/" aria-label="Varun Jain, home">
-          <span class="wordmark-dot" aria-hidden="true"></span>
-          Varun Jain
-        </a>
+        <FoldingHeaderWordmark />
         <nav aria-label="Primary navigation">
           <a href="/about/">About</a>
           <a href="/founders-guide/">Founder’s Guide</a>
