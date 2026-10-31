@@ -1,0 +1,133 @@
+---
+/**
+ * Animated header identity: "Varun Jain" folds letter-by-letter into "VJ".
+ * The name stays in the accessible link label, and without JS the full name
+ * remains visible. Reduced-motion visitors see the full name without motion.
+ */
+---
+
+<a class="wordmark folding-wordmark" data-folding-wordmark href="/" aria-label="Varun Jain, home" title="Varun Jain">
+  <span class="wordmark-dot" aria-hidden="true"></span>
+  <span class="folding-wordmark__letters" aria-hidden="true">
+    <span class="folding-wordmark__initial">V</span>
+    <span class="folding-wordmark__extra" data-fold-glyph style="--fold-order:7;--unfold-order:0">a</span>
+    <span class="folding-wordmark__extra" data-fold-glyph style="--fold-order:6;--unfold-order:1">r</span>
+    <span class="folding-wordmark__extra" data-fold-glyph style="--fold-order:5;--unfold-order:2">u</span>
+    <span class="folding-wordmark__extra" data-fold-glyph style="--fold-order:4;--unfold-order:3">n</span>
+    <span class="folding-wordmark__extra" data-fold-glyph style="--fold-order:3;--unfold-order:4">&nbsp;</span>
+    <span class="folding-wordmark__initial">J</span>
+    <span class="folding-wordmark__extra" data-fold-glyph style="--fold-order:2;--unfold-order:0">a</span>
+    <span class="folding-wordmark__extra" data-fold-glyph style="--fold-order:1;--unfold-order:1">i</span>
+    <span class="folding-wordmark__extra" data-fold-glyph style="--fold-order:0;--unfold-order:2">n</span>
+  </span>
+</a>
+
+<script>
+  const introKey = 'varunjain-header-fold-intro';
+
+  document.querySelectorAll<HTMLAnchorElement>('[data-folding-wordmark]').forEach((logo) => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const letters = Array.from(logo.querySelectorAll<HTMLElement>('[data-fold-glyph]'));
+    // Measure actual glyph widths before animating so responsive text,
+    // font fallbacks and zoom levels do not leave arbitrary blank space.
+    for (const letter of letters) {
+      letter.style.setProperty('--glyph-width', `${letter.getBoundingClientRect().width}px`);
+    }
+
+    const fold = () => {
+      logo.classList.add('is-folded');
+      try { sessionStorage.setItem(introKey, '1'); } catch { /* private mode */ }
+    };
+    const unfold = () => logo.classList.remove('is-folded');
+
+    let wasShown = false;
+    try { wasShown = sessionStorage.getItem(introKey) === '1'; } catch { /* private mode */ }
+
+    let introTimer: number | undefined;
+    if (wasShown) {
+      logo.classList.add('folding-wordmark--instant');
+      fold();
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => logo.classList.remove('folding-wordmark--instant'));
+      });
+    } else {
+      introTimer = window.setTimeout(() => {
+        if (!logo.matches(':hover') && document.activeElement !== logo) fold();
+      }, 1100);
+    }
+
+    // Expand on hover or keyboard focus, then gently fold back to VJ.
+    logo.addEventListener('pointerenter', () => {
+      if (introTimer !== undefined) window.clearTimeout(introTimer);
+      unfold();
+    });
+    logo.addEventListener('pointerleave', fold);
+    logo.addEventListener('focus', () => {
+      if (introTimer !== undefined) window.clearTimeout(introTimer);
+      unfold();
+    });
+    logo.addEventListener('blur', fold);
+  });
+</script>
+
+<style>
+  .folding-wordmark {
+    white-space: nowrap;
+    flex-shrink: 0;
+    perspective: 340px;
+  }
+  .folding-wordmark__letters {
+    display: inline-flex;
+    align-items: baseline;
+    white-space: nowrap;
+    font-variant-ligatures: none;
+  }
+  .folding-wordmark__initial,
+  .folding-wordmark__extra {
+    display: inline-block;
+    flex: 0 0 auto;
+    line-height: 1.2;
+  }
+  .folding-wordmark__extra {
+    width: var(--glyph-width, auto);
+    min-width: 0;
+    overflow: hidden;
+    white-space: pre;
+    transform-origin: left center;
+    transform: perspective(300px) rotateY(0deg);
+    opacity: 1;
+    backface-visibility: hidden;
+    transition:
+      width 500ms cubic-bezier(.62, 0, .24, 1),
+      transform 500ms cubic-bezier(.62, 0, .24, 1),
+      opacity 330ms ease;
+    transition-delay: calc(var(--unfold-order) * 55ms);
+  }
+  .folding-wordmark.is-folded .folding-wordmark__extra {
+    width: 0;
+    transform: perspective(300px) rotateY(-89deg);
+    opacity: 0;
+    transition-delay: calc(var(--fold-order) * 72ms);
+  }
+  .folding-wordmark .wordmark-dot {
+    transition: border-radius 500ms ease, transform 500ms ease;
+  }
+  .folding-wordmark.is-folded .wordmark-dot {
+    border-radius: 3px;
+    transform: rotate(45deg);
+  }
+  .folding-wordmark--instant .folding-wordmark__extra,
+  .folding-wordmark--instant .wordmark-dot {
+    transition: none !important;
+  }
+  .folding-wordmark:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 6px;
+    border-radius: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .folding-wordmark__extra,
+    .folding-wordmark .wordmark-dot { transition: none; }
+  }
+</style>
