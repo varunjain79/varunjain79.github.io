@@ -26,9 +26,9 @@ Use this basic formula:
 
 **Cost per verified task = total model, tool and infrastructure spend ÷ number of tasks that pass verification.**
 
-Include failed attempts in the numerator. Keep human review costs visible separately, because a workflow that saves API spend but doubles review time may not improve the business.
+Include failed attempts. Track human review separately.
 
-For example, if 1,000 attempts cost ₹8,000 and only 800 pass the agreed checks, the model-and-tool cost is ₹10 per successful task, not ₹8. These figures are illustrative, not observed market prices.
+For example, if 1,000 attempts cost ₹8,000 and 800 pass, cost is ₹10 per success. Illustrative figures only.
 
 ## What Google's experiment actually found
 
@@ -38,7 +38,7 @@ One important result was counterintuitive: lowering the maximum output-token all
 
 In the same experiment, a lower-thinking configuration of Gemini Flash answered all 50 questions. A classifier-based route between Flash-Lite and low-thinking Flash also answered all 50 and reduced cost and latency in that test.
 
-These results have limits: one run per setup, a small test set, hand-labelled difficulty and simple automatic grading. Google also notes that routing can interfere with model-specific context caching.
+Limits include one run per setup, a small test set and simple grading. Routing can also interfere with caching.
 
 The lesson is not to copy Google's exact model stack. It is to test the simplest configuration against your own workload before adding infrastructure.
 
@@ -46,9 +46,9 @@ The lesson is not to copy Google's exact model stack. It is to test the simplest
 
 ### 1. Divide work by risk, not by department
 
-Do not assume every hiring, customer-service or coding task needs the same model.
+Different tasks need different models.
 
-Separate deterministic extraction from interpretation. Pulling a date from a structured record is different from judging whether a candidate's experience matches an ambiguous leadership mandate. Summarising a support conversation is different from authorising a refund.
+Separate deterministic extraction from interpretation. Pulling a date from a structured record is different from judging whether a candidate's experience matches an ambiguous leadership mandate. Summarising support is different from authorising refunds.
 
 Define low-, medium- and high-risk tasks. Keep irreversible actions, sensitive personal data and consequential decisions behind appropriate validation and human approval.
 
@@ -58,27 +58,27 @@ Select 100 to 200 representative tasks from real workflows, after removing unnec
 
 Record the current model, input and output tokens, thinking-token usage where available, tool calls, retries, latency and total spend. Most importantly, define what a correct answer looks like before comparing models.
 
-Without an evaluation set, a cheaper model may merely hide its mistakes.
+Without evaluation, savings may conceal errors.
 
 ### 3. Try the simplest cost reduction first
 
 Test a lighter model or lower reasoning setting on the same tasks. Compare success rate, error severity, latency and total cost per successful task.
 
-Do not assume a shorter answer means less computation. Google's experiment specifically found that an output-token cap was a poor substitute for controlling reasoning effort.
+A shorter output does not necessarily mean less computation.
 
 Also examine repeated context. If an agent resends large instructions, repository maps or schemas, caching may matter more than model routing.
 
 ### 4. Add routing only where it earns its complexity
 
-A router makes sense when there is a meaningful mix of simple and complex tasks and the cheaper path succeeds reliably on the simple ones.
+Routing makes sense when cheaper models reliably handle a substantial share of tasks.
 
 Start with a narrow decision: does this request require multi-step reasoning, or is it a straightforward lookup or extraction? Measure routing mistakes as seriously as model mistakes.
 
-For long-running agents that reuse a large shared context, switching models may reduce cache reuse and erase expected savings. Keep those workflows on a stable model unless measurements justify a change.
+Switching models may erase caching savings. Measure before changing.
 
 ### 5. Design a safe fallback
 
-A cheap first pass should not become an excuse to ship uncertain results.
+Do not ship uncertain results.
 
 Escalate when required fields are missing, a validator fails, the model reports uncertainty, or the action affects money, privacy or external systems. Keep an audit trail showing which model produced the result and which checks passed.
 
@@ -94,7 +94,7 @@ Escalate when required fields are missing, a validator fails, the model reports 
 
 **Day 7:** Decide whether to deploy to a small traffic segment. Set rollback thresholds and continue measuring production outcomes.
 
-A sensible dashboard has five numbers: verified success rate, cost per successful task, p95 latency, escalation rate and serious-error count.
+Track verified success, cost per success, p95 latency, escalations and serious errors.
 
 ## The founder's decision
 
