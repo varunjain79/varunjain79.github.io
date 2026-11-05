@@ -22,11 +22,7 @@ GitHub's existing Copilot for Xcode extension remains a separate option. This is
 
 The official setup path is **Xcode > Settings > Intelligence**. The announcement directs developers to Apple's Xcode beta documentation for additional setup details.
 
-This is a distribution and workflow announcement, not an independently verified productivity benchmark.
-
 ## Why founders should care
-
-Most founders should not make IDE choices for engineers. But the choice becomes a management issue when it changes review standards, tool spending, code ownership or release reliability.
 
 An Indian startup with a small mobile team may have one engineer working across SwiftUI, networking, analytics, crash handling and App Store submissions. If AI assistance removes repetitive work without increasing regressions, that capacity matters. If it creates more code that the same engineer must inspect, the apparent savings disappear.
 
@@ -46,15 +42,11 @@ Avoid beginning with payment flows, authentication, encryption, privacy-sensitiv
 
 A useful test task is a settings screen that includes an accessibility label, a persisted preference, a loading state and an error state. Define the expected behaviour before using the assistant. Then compare how much time engineers spend generating, reviewing and correcting the implementation.
 
-The point is to evaluate the whole task rather than cherry-pick a good demo.
-
 ## A 10-working-day rollout plan
 
 ### Days 1–2: Establish the baseline
 
 Select three representative tasks from your existing backlog. Record the current time to implementation, review time, test failures and number of corrections requested. Include one UI task, one integration task and one test-heavy task.
-
-Keep the baseline honest. If you do not have historical measurements, use the next comparable tasks rather than inventing them.
 
 ### Days 3–4: Check tool and policy fit
 
@@ -66,13 +58,9 @@ Keep production credentials, customer records and private keys out of prompts. E
 
 Have a developer complete small, comparable tasks using the built-in integration and the team's current approach. Record time spent prompting, editing, reviewing and testing.
 
-Do not ask engineers to race. Encourage them to reject incorrect suggestions and document why. A tool that helps developers catch mistakes may be valuable even when it does not generate the most code.
-
 ### Days 8–9: Validate release quality
 
 Run the usual unit tests, UI tests, static checks and device testing. Examine performance, accessibility, offline behaviour and error handling. Review generated dependencies and unexpected network calls.
-
-The same quality bar should apply regardless of who or what wrote the first draft.
 
 ### Day 10: Decide
 
@@ -91,8 +79,6 @@ Expand the pilot only if the results are better without weakening reliability. O
 For a broader hiring perspective, read [how Indian startups should assess engineers in the AI era](https://varunjain.info/founders-guide/how-indian-startups-hire-software-engineers-ai-era/).
 
 ## The founder decision
-
-The opportunity is not to replace your iOS team with prompts. It is to help a small team spend less time on routine implementation and more time understanding users, improving architecture and releasing safely.
 
 Treat GitHub's Xcode integration as an experiment with a measurable hypothesis: **we can deliver comparable iOS changes with less total effort and no loss of quality**.
 
