@@ -20,7 +20,7 @@ Those are OpenAI's reported operational results, not a benchmark that a 15-perso
 
 ## The real lesson is about bottlenecks, not Git replacement
 
-OpenAI retained Git compatibility while changing its backend to handle many independent branch updates and large volumes of reads. Its design uses independent reference updates, reusable packfiles and caching. These are sensible choices at its scale.
+OpenAI retained Git compatibility while changing its backend to handle many independent branch updates and large volumes of reads. Its design uses independent reference updates, reusable packfiles and caching. 
 
 But a typical startup's limiting factors are different: one overworked reviewer, a slow integration test suite, flaky deployments, unclear ownership or long-lived branches. Adding agents can magnify each problem.
 
@@ -34,13 +34,11 @@ The useful metric is **time from an accepted task to a verified production relea
 
 Record when work starts, when a pull request opens, when CI finishes, when review completes and when production deploys. Segment the figures by human-authored and AI-assisted changes without assuming either group is inherently better.
 
-Track median and 90th-percentile lead times, not just averages. One stuck migration can distort an average, while a long tail of blocked changes reveals recurring friction.
+Track median and 90th-percentile lead times, not just averages. 
 
 **Action:** Review the ten slowest changes each week and identify the actual waiting stage.
 
 ### 2. Put limits on concurrent agent work
-
-Parallel agents are useful when tasks are independent. They are less useful when several agents modify the same configuration, database model or shared component.
 
 Define file ownership and task boundaries. Use short-lived branches, small changes and explicit integration points. Avoid launching five agents against one tightly coupled module simply because the tools permit it.
 
@@ -50,13 +48,11 @@ Define file ownership and task boundaries. Use short-lived branches, small chang
 
 A typo fix should not always consume the same CI resources as a database migration. Build a quick validation layer for formatting, types and targeted tests, followed by deeper integration and security checks where the risk justifies them.
 
-Do not use this as an excuse to skip essential tests. Authentication, payments, permissions and personal-data handling need stronger verification regardless of who wrote the code.
-
 **Action:** Measure CI queue time separately from test execution time. Buying faster runners will not solve flaky tests.
 
 ### 4. Make reviews explain the change
 
-An AI-generated pull request should state its purpose, assumptions, affected modules, tests performed and rollback considerations. A reviewer needs to understand the intended behaviour, not read thousands of lines without context.
+An AI-generated pull request should state its purpose, assumptions, affected modules, tests performed and rollback considerations. 
 
 Require a human owner for production changes. Agents can propose, test and explain; accountability remains with the engineering team.
 
@@ -66,7 +62,7 @@ Require a human owner for production changes. Agents can propose, test and expla
 
 OpenAI describes initially deploying Pando as a proxy alongside its existing backend, keeping the two systems synchronized while migrating traffic. That is a useful rollout principle even if the underlying architecture is irrelevant to your company.
 
-For startup features, use feature flags, staged rollouts, migration safeguards and tested rollback procedures. A faster implementation is not a win if recovery from failure takes a day.
+For startup features, use feature flags, staged rollouts, migration safeguards and tested rollback procedures. 
 
 **Action:** Every high-risk release should have a named owner and an explicit rollback decision.
 
@@ -84,24 +80,22 @@ For startup features, use feature flags, staged rollouts, migration safeguards a
 
 **Day 6:** Run a staged deployment and rehearse rollback on a non-critical feature.
 
-**Day 7:** Compare lead time, review effort, failed checks and defects against the baseline. If the data is inconclusive, extend the experiment rather than declaring success.
+**Day 7:** Compare lead time, review effort, failed checks and defects against the baseline. 
 
-A useful scorecard has four numbers: median time to merge, reviewer minutes per change, percentage of failed CI runs and escaped defects. Add customer adoption or operational savings when a feature reaches production.
+A useful scorecard has four numbers: median time to merge, reviewer minutes per change, percentage of failed CI runs and escaped defects. 
 
 ## When should a startup actually rethink source control?
 
 Only after measurement shows that repository operations themselves are a material constraint. If clone and fetch times dominate CI, branch operations repeatedly fail under concurrent load, and simpler measures have been exhausted, infrastructure changes may be justified.
 
-Even then, evaluate caching, shallow clones, artifact reuse, repository boundaries and CI architecture before adopting a new backend. OpenAI's architecture solves a very specific scale problem. Copying it without that problem creates complexity rather than leverage.
+ OpenAI's architecture solves a very specific scale problem. Copying it without that problem creates complexity rather than leverage.
 
-For an Indian founder watching cloud costs and hiring budgets, this distinction is important. Engineering time spent on impressive infrastructure is time not spent improving the product.
+For an Indian founder watching cloud costs and hiring budgets, this distinction is important. 
 
 For related operating decisions, see my guides on [turning AI-generated code into reliable releases](/founders-guide/ai-code-cheaper-startups-struggle-to-ship/) and [running a bounded GitHub agent pilot](/founders-guide/github-agentic-workflows-seven-day-pilot-indian-startups/).
 
 ## What I would ask in the next engineering review
 
 Not “How many pull requests did our agents create?” Ask: “Which stage is now slowing delivery, how much does it cost, and what evidence shows the fix worked?”
-
-The strongest engineering teams will not be those generating the most code. They will be those converting more changes into reliable outcomes without letting review, testing and operations become the new bottleneck.
 
 *Source note: OpenAI's [November 2 engineering report](https://openai.com/index/scaling-git-at-openai/) is the primary source for Pando's architecture and reported performance. The startup recommendations and seven-day experiment are independent analysis; the hypothetical team example is illustrative.*
