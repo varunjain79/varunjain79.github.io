@@ -14,8 +14,6 @@ keyTakeaway: "Measure useful findings, review effort and escaped defects togethe
 
 On November 5, [GitHub announced new Copilot code review usage metrics](https://github.blog/changelog/2026-11-05-usage-metrics-api-adds-code-review-details-and-addressed-rate/). For eligible enterprise and organisation reporting, the new `copilot_code_review` data in daily repository reports shows how many evaluated AI review comments developers addressed, broken down by severity, review tier, comment type and customisation. On November 6, [GitHub also expanded API controls for code review settings](https://github.blog/changelog/2026-11-06-copilot-code-review-api-management-and-review-overview-updates/).
 
-This is useful for founders because it changes the conversation from “Are engineers using AI?” to “Is AI feedback changing engineering decisions?”
-
 ## What GitHub's new metric actually measures
 
 The basic addressed rate is:
@@ -24,11 +22,11 @@ The basic addressed rate is:
 
 GitHub counts a comment as addressed when the developer applies a suggestion, asks Copilot to fix it, edits the code, or replies that the fix will follow in a later pull request. Comments are evaluated when the pull request merges, so they appear on the merge date rather than the date of the original comment.
 
-That last detail matters. An addressed comment is not necessarily a verified fix. A promise to fix something later can count, and an AI reviewer can miss a serious issue entirely. The metric therefore tells you whether developers responded to AI feedback, not whether the system is safe.
+An addressed comment is not necessarily a verified fix. A promise to fix something later can count, and an AI reviewer can miss a serious issue entirely. The metric therefore tells you whether developers responded to AI feedback, not whether the system is safe.
 
 GitHub also reports merged pull requests with no subsequent human change request after Copilot's first review. That can indicate smoother reviews, but it does not prove the AI found every issue or that human review was unnecessary.
 
-The data is available in enterprise and organisation `repos-1-day` reports, subject to the relevant permissions and enabled usage-metrics policy. Smaller teams should check plan and access requirements before designing a dashboard around it.
+The reports require eligible organisation or enterprise permissions and an enabled usage-metrics policy.
 
 ## Why this matters for a 10-person engineering team
 
@@ -38,7 +36,7 @@ But it might also produce repetitive style comments, flag harmless patterns and 
 
 The right question is not whether the AI reviewer is impressive. It is whether the total cost of shipping a reliable change falls.
 
-This is the same distinction I made in [why AI-generated code does not automatically accelerate releases](/founders-guide/ai-code-cheaper-startups-struggle-to-ship/). Faster production of artefacts is useful only when the downstream system can absorb them.
+As discussed in [why AI-generated code does not automatically accelerate releases](/founders-guide/ai-code-cheaper-startups-struggle-to-ship/), faster output is valuable only if teams can absorb it.
 
 ## A five-metric scorecard for startup CTOs
 
@@ -64,7 +62,7 @@ Sample comments and classify them as useful, duplicate, incorrect or low-value. 
 
 Include subscription or usage charges, extra CI time and the engineering minutes spent triaging AI feedback. Cost per useful finding is often more meaningful than cost per review.
 
-Do not collapse these five signals into one vanity score. A reviewer that catches a rare authorization bug may be valuable even if it produces relatively few comments.
+A reviewer that catches a rare authorization bug may be valuable even with few comments.
 
 ## A ten-working-day pilot
 
