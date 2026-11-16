@@ -43,7 +43,7 @@ This is especially relevant for small engineering teams where nobody owns securi
 
 However, a security alert is not proof of an exploitable vulnerability. And an AI scan is not a substitute for dependency monitoring, secret scanning, access reviews, threat modeling, or penetration testing. Treat it as a supplementary detection method.
 
-There is also a commercial consideration. GitHub says repository scans consume Code Security AI credits, and [billing and availability depend on repository ownership and security entitlements](https://github.blog/changelog/2026-10-28-ai-scan-for-repositories-in-public-preview/). Do not roll out scans across every repository without checking the applicable plan and budget.
+GitHub says scans consume Code Security AI credits. [Check eligibility and billing](https://github.blog/changelog/2026-10-28-ai-scan-for-repositories-in-public-preview/) before expanding.
 
 ## A five-day pilot CTOs can run
 
